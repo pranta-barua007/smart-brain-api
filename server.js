@@ -9,6 +9,8 @@ const signin = require('./controllers/signin');
 const profile = require('./controllers/profile');
 const image = require('./controllers/image');
 
+if (process.env.NODE_ENV !== 'production') require('dotenv').config();
+
 const db = knex({
     client: 'pg',
     connection: {
