@@ -1,15 +1,17 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const bcrypt = require('bcrypt-nodejs');
+const helmet = require('helmet');
+const bcrypt = require('bcrypt');
 const cors = require('cors');
 const knex = require('knex');
+
+if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 
 const register = require('./controllers/register');
 const signin = require('./controllers/signin');
 const profile = require('./controllers/profile');
 const image = require('./controllers/image');
 
-if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 
 const db = knex({
     client: 'pg',
@@ -21,9 +23,9 @@ const db = knex({
     }
 });
 
-
 const app = express();
 
+app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({  extended: true }));
 app.use(cors());
@@ -40,6 +42,7 @@ app.put('/image', (req, res) => { image.handleImage(req, res, db) });
 
 app.post('/imageurl', (req, res) => { image.handleApiCall(req, res) });
 
-app.listen(process.env.PORT || 3000, () => {
-  console.log(`app is runnin on port ${process.env.PORT}`)
+const port = process.env.PORT || 5000;
+app.listen(port, () => {
+  console.log(`app is runnin on port ${port}`)
 });
