@@ -7,6 +7,7 @@ Final project - using Docker
 4. Run `docker-compose up` ( you may have to run `docker-compose up --build` for the first setup phase)
 5. You must add your own API key in the `controllers/image.js` file to connect to Clarifai API.
 6. Create a .env file and put your API key CLARIFAI_API_KEY=yourAPIkey & JWT_SECRET=yourJWTsecret
+7. Change `start: nodemon server.js` in package.json
 
 **Important:** if you are getting conflict erros, you should run `docker stop <container name>` that is already running in the background.
 **Important:** if you are getting other erros, you should run `docker-compose down` to bring everything down, and start over.

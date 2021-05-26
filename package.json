@@ -1,10 +1,10 @@
 {
-  "name": "server-express",
+  "name": "express-server-smart-brain",
   "version": "1.0.0",
   "description": "",
   "main": "express.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "npm server.js"
   },
   "author": "",
   "license": "ISC",
